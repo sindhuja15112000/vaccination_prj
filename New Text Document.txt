@@ -1,0 +1,261 @@
+admin.php
+*********
+<?php
+
+    $login_name = $_POST['username'];
+    $login_password = $_POST['password'];
+    if(($login_name == "admin") && ($login_password == "admin"))
+      {
+        echo "<script> location.href='display.php'; </script>";
+			}
+		else{
+			echo "invalid";
+			}
+      
+ ?>
+***********
+connect.php
+***********
+<?php
+
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['pass'];
+    $repeat_password = $_POST['re_pass'];
+
+
+    //Dtabase conn
+
+    $conn = new mysqli('localhost:3325','root','sindhuja.k','vcare4u');
+  	if($conn->connect_error){
+  		echo "$conn->connect_error";
+  		die("Connection Failed : ". $conn->connect_error);
+  	} else {
+  		$stmt = $conn->prepare("insert into signup(name, email,password,repeat_password) values(?, ?, ?, ?)");
+  		$stmt->bind_param("ssss", $name,$email, $password,$repeat_password);
+  		$execval = $stmt->execute();
+  		echo $execval;
+                echo "<script> location.href='link.html'; </script>";
+  		$stmt->close();
+  		$conn->close();
+  	}
+
+
+ ?>
+**************
+connection.php
+**************
+<?php
+
+$dbServername = "localhost:3325";
+$dbUsername = "root";
+$dbPassword = "sindhuja.k";
+$dbName = "vcare4u";
+
+$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+***********
+display.php
+***********
+<html>
+<head>
+<title>DISPLAY INFO</title>
+<link rel="stylesheet" type="text/css" href="internal.css">
+</head>
+<body>
+    <h1>BOOKED SCHEDULES</h1>
+    <table border="2">
+    <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>email</th>
+    <th>timing</th>
+    <th>hospital</th>
+    </tr>
+
+<div class="container">
+  <?php
+
+  include("connection.php");
+  //error_reporting(0);
+  $query = "SELECT * FROM bookschedule";
+  $data = mysqli_query($conn,$query);
+  $total = mysqli_num_rows($data);
+
+  if($total!=0)
+  {
+  while($result=mysqli_fetch_assoc($data))
+  {
+    echo "
+    <tr>
+    <th> ". $result['id']." </th>
+    <th> ". $result['name']." </th>
+    <th> ". $result['email']." </th>
+    <th> ". $result['timing']." </th>
+    <th> ". $result['hospital']." </th>
+    </tr>
+    ";
+
+  }
+  }
+
+  ?>
+</div>
+</table>
+</body>
+</html>
+***********
+insert.php
+***********
+<?php
+if (isset($_POST['submit'])) {
+    if (isset($_POST['name']) && isset($_POST['Aadhar']) &&
+        isset($_POST['address']) && isset($_POST['bloodgrp']) &&
+        isset($_POST['gender']) && isset($_POST['corona']) &&
+        isset($_POST['email']) && isset($_POST['history'])  &&
+        isset($_POST['vaccine']) && isset($_POST['phone']) &&
+        isset($_POST['height']) && isset($_POST['weight'])) {
+
+        $name = $_POST['name'];
+        $address = $_POST['address'];
+        $bloodgrp = $_POST['bloodgrp'];
+        $Aadhar_no = $_POST['Aadhar'];
+        $gender = $_POST['gender'];
+        $corona = $_POST['corona'];
+        $email = $_POST['email'];
+        $history = $_POST['history'];
+        $vaccine = $_POST['vaccine'];
+        $phone_no = $_POST['phone'];
+        $height = $_POST['height'];
+        $weight = $_POST['weight'];
+        $host = "localhost:3325";
+        $dbUsername = "root";
+        $dbPassword = "sindhuja.k";
+        $dbName = "vcare4u";
+        $conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
+        if ($conn->connect_error) {
+            die('Could not connect to the database.');
+        }
+        else {
+            $Select = "SELECT email FROM register WHERE email = ? LIMIT 1";
+            $Insert = "INSERT INTO register(name, address, bloodgrp, Aadhar_no, gender, corona, email, history, vaccine, phone_no, height, weight) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($Select);
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->bind_result($resultEmail);
+            $stmt->store_result();
+            $stmt->fetch();
+            $rnum = $stmt->num_rows;
+            if ($rnum == 0) {
+                $stmt->close();
+                $stmt = $conn->prepare($Insert);
+                $stmt->bind_param("sssisssssiii",$name, $address, $bloodgrp, $Aadhar_no, $gender, $corona, $email, $history, $vaccine, $phone_no, $height, $weight);
+                if ($stmt->execute()) {
+                    echo "<script> location.href='link.html'; </script>";
+                }
+                else {
+                    echo $stmt->error;
+                }
+            }
+            else {
+                echo "Someone already registers using this email.";
+            }
+            $stmt->close();
+            $conn->close();
+        }
+    }
+    else {
+        echo "All field are required.";
+        die();
+    }
+}
+else {
+    echo "Submit button is not set";
+}
+?>
+***********
+last.php
+***********
+<?php
+if (isset($_POST['submit'])) {
+    if (isset($_POST['name']) &&
+        isset($_POST['time']) &&
+        isset($_POST['email']) &&
+        isset($_POST['hospital']) && isset($_POST['date'])) {
+
+        $name = $_POST['name'];
+        $timing = $_POST['time'];
+        $email = $_POST['email'];
+        $hospital = $_POST['hospital'];
+        $date_chosen=date('y-m-d', strtotime($_POST['date']));
+        $host = "localhost:3325";
+        $dbUsername = "root";
+        $dbPassword = "sindhuja.k";
+        $dbName = "vcare4u";
+        $conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
+        if ($conn->connect_error) {
+            die('Could not connect to the database.');
+        }
+        else {
+            $Select = "SELECT email FROM register WHERE email = ? LIMIT 2";
+            $Insert = "INSERT INTO bookschedule(name, timing, email, hospital, date_chosen) values(?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($Select);
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->bind_result($resultEmail);
+            $stmt->store_result();
+            $stmt->fetch();
+            $rnum = $stmt->num_rows;
+            if ($rnum <= 2) {
+                $stmt->close();
+                $stmt = $conn->prepare($Insert);
+                $stmt->bind_param("sssss",$name, $timing, $email, $hospital, $date_chosen);
+                if ($stmt->execute()) {
+                    echo "successfully booked your schedule";
+                    echo "<script> location.href='link.html'; </script>";
+                }
+                else {
+                    echo $stmt->error;
+                }
+            }
+            else {
+                echo "Someone already registers using this email.";
+            }
+            $stmt->close();
+            $conn->close();
+        }
+    }
+    else {
+        echo "All field are required.";
+        die();
+    }
+}
+else {
+    echo "Submit button is not set";
+}
+?>
+**************
+signinpage.php
+**************
+<?php
+
+    $login_name = $_POST['your_name'];
+    $login_password = $_POST['your_pass'];
+
+   //Dtabase conn
+
+    $conn = new mysqli('localhost:3325','root','sindhuja.k','vcare4u');
+  	if($conn->connect_error){
+  		echo "$conn->connect_error";
+  		die("Connection Failed : ". $conn->connect_error);
+  	} else {
+  		$stmt = $conn->prepare("insert into signin(login_name,login_password) values(?, ?)");
+  		$stmt->bind_param("ss", $login_name,$login_password);
+  		$execval = $stmt->execute();
+  		echo $execval;
+  		echo "<script> location.href='link.html'; </script>";
+  		$stmt->close();
+  		$conn->close();
+  	}
+
+
+ ?>

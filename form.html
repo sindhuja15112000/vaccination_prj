@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Register  Form</title>
+  <link rel="stylesheet" type="text/css" href="external.css">
+</head>
+<body>
+ <h1>REGISTRATION FORM</h1>
+ <form action="insert.php" method="POST">
+
+  <table>
+   <tr>
+    <td>Name :</td>
+    <td><input type="text" name="name" required></td>
+   </tr>
+   <tr>
+    <td>Aadhar Number :</td>
+    <td><input type="number" name="Aadhar" required></td>
+   </tr>
+   <tr>
+    <td>Gender :</td>
+    <td>
+     <input type="radio" name="gender" value="m" required>Male
+     <input type="radio" name="gender" value="f" required>Female
+    </td>
+   </tr>
+   <tr>
+    <td>have you tested positive for corona :</td>
+    <td>
+     <input type="radio" name="corona" value="yes" required>Yes
+     <input type="radio" name="corona" value="no" required>No
+    </td>
+   </tr>
+   <tr>
+    <td>Email :</td>
+    <td><input type="email" name="email" required></td>
+   </tr>
+   <tr>
+    <td>do you have any chronic diseases :</td>
+    <td><input type="text" name="history" required></td>
+   </tr>
+   <tr>
+    <td>Address :</td>
+    <td><input type="text" name="address" required></td>
+   </tr>
+   <tr>
+    <td>bloodgroup :</td>
+    <td><input type="text" name="bloodgrp" required></td>
+   </tr>
+   <tr>
+    <td>choose vaccine:</td>
+    <td>
+     <select name="vaccine" required>
+      <option selected hidden value="">Select vaccine</option>
+      <option value="covaxin">covaxin</option>
+      <option value="covishield">covishield</option>
+      <option value="sputnik">sputnik</option>
+    </select><br><br>
+    <tr>
+     <td>phone :</td>
+     <td><input type="number" name="phone" required></td>
+   </tr>
+   <tr>
+    <td>height :</td>
+    <td><input type="number" name="height" required></td>
+  </tr>
+  <tr>
+   <td>weight :</td>
+   <td><input type="number" name="weight" required></td>
+ </tr>
+    </td>
+   </tr>
+
+   <tr>
+    <td><input type="submit" value="submit" name="submit"></td>
+   </tr>
+
+  </table>
+ </form>
+</body>
+</html>

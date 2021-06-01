@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <title>MY PROFILE</title>
+</head>
+<body style="text-align: center">
+ <header class="cd-header flex flex-column flex-center">
+  <div class="text-component text-center">
+    <h1>MY PROFILE</h1>
+    `
+  </div>
+ </header>
+
+ <div style="text-align: center">
+	 <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+      <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <div class="card-body">
+                    <h2 class="title">REGISTRATION FORM</h2><br>
+                    <form  onsubmit="myFunction()">
+						          <label for="fname">First name:</label>
+						          <input type="text" id="fname" name="fname"><br><br>
+						          <label for="lname">Last name:</label>
+					            <input type="text" id="lname" name="lname"><br><br>
+						          <label for="dob">Date of birth:</label>
+						          <input type="date" id="dob" name="dob"><br><br>
+						          <label for="gender">Gender:</label>
+					            <input type="radio" id="male" name=gender value="male">
+                      <lable for="male">Male</lable>
+                      <input type="radio" id="female" name=gender value="female">
+                      <lable for="female">Female</lable>
+                      <input type="radio" id="others" name=gender value="others">
+                      <lable for="others">Others</lable><br><br>
+                      <label for="bloodgroup">Blood Group:</label>
+						          <input type="text" id="bloodgroup" name="bloodgroup"><br><br>
+						          <label for="height">Height:</label>
+					            <input type="text" id="height" name="height"><br><br>
+                      <label for="weight">Weight:</label>
+					            <input type="text" id="weight" name="weight"><br><br>
+                      <label for="address">Address:</label>
+					            <input type="text" id="address" name="address"><br><br>
+                      <label for="phno">Mobile Number:</label>
+					            <input type="text" id="phno" name="phno"><br><br>
+                      <label for="email">Email-id:</label>
+					            <input type="text" id="email" name="email"><br><br>
+                      <label for="aadhar">Aadhar Number:</label>
+					            <input type="text" id="aadhar" name="aadhar"><br><br>
+                      <label for="chronic">Do you have any chronic diseases?</label>
+					            <input type="text" id="chronic" name="chronic"><br><br>
+                      <label for="covid">Have you already been diagnosed with Covid-19?</label>
+                      <select name="covid" id="covid">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                      </select><br><br>
+                      <label for="vaccine">I here by declare to get the below vaccination?</label>
+                      <select name="vaccine" id="vaccine">
+                       <option value="Covaxin">Covaxin</option>
+                       <option value="Covishield">Covishield</option>
+                      </select><br><br>
+                      <input type="submit" value="Submit">
+                    </form>
+                    <script>
+                      function myFunction() {
+                        alert("Submitted successfully");
+
+                      }
+                    </script>
+
+            
+            
+
+
+
+
+			              
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+</body>
+	
+
+	<a href="#0" class="cd-faq__close-panel text-replace">Close</a>
+  
+  <div class="cd-faq__overlay" aria-hidden="true"></div>
+</section> <!-- cd-faq -->
+<script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
+<script src="assets/js/main.js"></script> 
+</body>
+</html>

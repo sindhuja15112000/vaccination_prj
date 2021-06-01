@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Register Form</title>
+  <link rel="stylesheet" type="text/css" href="internal.css">
+</head>
+<body>
+  <h1>BOOK YOUR SCHEDULE</h1>
+ <form action="last.php" method="POST">
+  <table>
+   <tr>
+    <td>Name :</td>
+    <td><input type="text" name="name" required></td></br>
+  </tr></br></br>
+   <tr></br>
+    <td>Email :</td>
+    <td><input type="email" name="email" required></td>
+   </tr>
+   <tr>
+    <td>choose your timing :</td>
+    <td></br>
+     <input type="radio" name="time" value="9" required>9.00am-10.00am </br>
+     <input type="radio" name="time" value="10" required>10.00am-11.00am </br>
+     <input type="radio" name="time" value="11" required>11.00am-12.00pm </br>
+     <input type="radio" name="time" value="1" required>1.00am-2.00pm </br>
+     <input type="radio" name="time" value="2" required>2.00am-3.00pm </br>
+     <input type="radio" name="time" value="3" required>3.00am-4.00pm </br>
+    </td>
+   </tr>
+   <tr>
+    <td>choose your nearest hospital:</td>
+    <td></br>
+     <select name="hospital" required>
+      <option selected hidden value="">--Select your nearest hospital--</option>
+      <option value="stanley">The Stanley Medical College,Chennai</option>
+      <option value="mgmcri"> Mahatma Gandhi Medical College and Reasearch Institute,Pondicherry</option>
+      <option value="cmc">The Christian Medical College,Vellore</option>
+      <option value="appolo">Apollo Hospital,Chennai</option>
+      <option value="ggh">Gleneagles Global Health City,Chennai</option>
+      <option value="kauvery">Kauvery Hospital,Chennai</option>
+      <option value="mmm">Madras Medical Mission Hospital,Chennai</option>
+      <option value="jipmer">Jawaharlal Institute of PostGraduate Medical Education and Research,Puducherry</option>
+    </select><br><br>
+    <tr></br>
+     <td>Date :</td>
+     <td><input type="date" name="date" required></td>
+   </tr>
+    </td>
+   </tr>
+   <tr>
+    <td><input type="submit" value="Submit" name="submit"></td>
+   </tr>
+  </table>
+ </form>
+</body>
+</html>
